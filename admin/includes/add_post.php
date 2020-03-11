@@ -21,7 +21,7 @@
         
         // $create_post_query = mysqli_query($connection, $query);
         $query = "INSERT INTO posts(post_category_id, post_title, post_author, post_date, post_image, post_content, post_tags, post_comment_count, post_status, post_user, post_views_count) 
-        VALUES ({$post_category_id},'{$post_title}','{$post_author}','{$post_date}','{$post_image}','{$post_content}','{$post_tags}','{$post_comment_count}','{$post_status}','{$post_user}','{$post_views_count}')";
+        VALUES ({$post_category_id},'{$post_title}','{$post_author}',now(),'{$post_image}','{$post_content}','{$post_tags}','{$post_comment_count}','{$post_status}','{$post_user}','{$post_views_count}')";
         $create_post_query = mysqli_query($connection, $query);
         comfirmQuery($create_post_query);
     }
