@@ -21,7 +21,7 @@
                         $post_status = $row['post_status'];
                         if($post_status !== 'Public')
                         {
-                            echo "<h1 class='text-center'>NO POST SORRY</h1>";
+                            //echo "<h1 class='text-center'>NO POST SORRY</h1>";
                         }
                         else
                         {
