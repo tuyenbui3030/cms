@@ -10,11 +10,10 @@
                 $cat_id = $row['cat_id'];
                 $cat_title = $row['cat_title'];
         ?>
-                <input value="<?php if (isset($cat_title)) {
-                                    echo $cat_title;
-                                } ?>" type="text" class="form-control" name="cat_title" />
-        <?php   }
-        }
+                <input value="<?php if (isset($cat_title)) {echo $cat_title;} ?>" type="text" class="form-control" name="cat_title" />
+        <?php   
+            } 
+        } 
         ?>
         <?php
         //UPDATE QUERY
