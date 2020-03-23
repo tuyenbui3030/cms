@@ -19,6 +19,7 @@
         VALUES ('{$user_firstname}','{$user_lastname}','{$user_role}','{$username}','{$user_email}','{$user_password}', '{$user_images}', '{$randSalt}')";
         $create_user_query = mysqli_query($connection, $query);
         comfirmQuery($create_user_query);
+        echo "User Created: " . " " . "<a href='users.php'>View Users</a> ";
     }
 ?> 
 <form action="" method="post" enctype="multipart/form-data">
