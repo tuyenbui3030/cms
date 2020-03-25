@@ -10,20 +10,21 @@
         $post_image_temp = $_FILES['image']['tmp_name'];
 
         $post_tags = $_POST['post_tags'];
-        $post_content = $_POST['post_content'];
+        $post_content = addslashes($_POST['post_content']);
         $post_date = date('d-m-y');
-        $post_comment_count = 0;
+       
+ $post_comment_count = 0;
         $post_user = '';
         $post_views_count = 0;
-        move_uploaded_file($post_image_temp, "../images/$post_image");
-        //$query = "INSERT INTO posts(post_category_id, post_title, post_author, post_date, post_image, post_content, post_tags, post_comment_count, post_status) ";
-        //$query .= "VALUES({$post_category_id},'{$post_title}','{$post_author}',now(),'{$post_image}','{$post_content}','{$post_tags}','{$post_comment_count}','{$post_status}' ) ";
-        
-        // $create_post_query = mysqli_query($connection, $query);
+        $destination_url = "../images/$post_image";
+        // print_r($destination_url); exit;
+        move_uploaded_file($post_image_temp, $destination_url);
         $query = "INSERT INTO posts(post_category_id, post_title, post_author, post_date, post_image, post_content, post_tags, post_comment_count, post_status, post_user, post_views_count) 
         VALUES ({$post_category_id},'{$post_title}','{$post_author}',now(),'{$post_image}','{$post_content}','{$post_tags}','{$post_comment_count}','{$post_status}','{$post_user}','{$post_views_count}')";
         $create_post_query = mysqli_query($connection, $query);
         comfirmQuery($create_post_query);
+        $the_post_id = mysqli_insert_id($connection);
+        echo "<p class='bg-success'>Post Created. <a href='../post.php?p_id={$the_post_id}'>View Post</a> or <a href='posts.php'>Edit More Posts</a></p>";
     }
 ?> 
 <form action="" method="post" enctype="multipart/form-data">
@@ -51,9 +52,16 @@
         <input type="text" class="form-control" name="author"/>
     </div>
     <div class="form-group">
+        <select name="post_status" id="">
+            <option value='draft'>Post Status</option>
+            <option value='draft'>Draft</option>
+            <option value='Public'>Public</option>
+        </select>
+    </div>
+    <!-- <div class="form-group">
         <label for="post_status">Post Status</label>
         <input type="text" class="form-control" name="post_status"/>
-    </div>
+    </div> -->
     <div class="form-group">
         <label for="post_image">Post Image</label>
         <input type="file" name="image"/>
@@ -64,7 +72,7 @@
     </div>
     <div class="form-group">
         <label for="post_content">Post Content</label>
-        <textarea class="form-control" name="post_content" id="" cols="30" rows="10"></textarea>
+        <textarea class="form-control" name="post_content" id="body" cols="30" rows="10"></textarea>
     </div>
     <div class="form-group">
         <input class="btn btn-primary" type="submit" name="create_post" value="Publish Post"/>
