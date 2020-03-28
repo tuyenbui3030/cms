@@ -9,7 +9,7 @@
         <!-- Blog Entries Column -->
         <div class="col-md-8">
             <?php
-           $per_page = 5;
+            $per_page = 5;
 
             if (isset($_GET['page'])) {
                 $page = $_GET['page'];
@@ -20,7 +20,7 @@
                 $page_1 = 0;
             } else {
                 $page_1 = ($page * $per_page) - $per_page;
-            } 
+            }
 
             $select_query_count = "SELECT * FROM posts";
             $find_count = mysqli_query($connection, $select_query_count);
@@ -74,18 +74,13 @@
     <hr>
     <ul class="pager">
         <?php
-
         for ($i = 1; $i <= $count; $i++) {
-            if($i == $page)
-            {
+            if ($i == $page) {
                 echo "<li><a class='active_link' href='index.php?page=$i'>$i</a></li>";
-            }
-            else
-            {
+            } else {
                 echo "<li><a href='index.php?page=$i'>$i</a></li>";
             }
         }
-
         ?>
     </ul>
     <?php include "includes/footer.php"; ?>
