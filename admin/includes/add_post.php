@@ -2,7 +2,7 @@
     if(isset($_POST['create_post']))
     {
         $post_title = $_POST['title'];
-        $post_author = $_POST['author'];
+        $post_user = $_POST['post_user'];
         $post_category_id = $_POST['post_category'];
         $post_status = $_POST['post_status'];
 
@@ -14,7 +14,7 @@
         $post_date = date('d-m-y');
        
  $post_comment_count = 0;
-        $post_user = '';
+        $post_author = '';
         $post_views_count = 0;
         $destination_url = "../images/$post_image";
         // print_r($destination_url); exit;
@@ -33,6 +33,7 @@
         <input type="text" class="form-control" name="title"/>
     </div>
     <div class="form-group">
+        <label for="category">Category: </label>
         <select name="post_category" id="post_category">
             <?php
                 $query = "SELECT * FROM categories";
@@ -47,10 +48,29 @@
             ?>
         </select>
     </div>
-    <div class="form-group">
+    <!-- <div class="form-group">
         <label for="title">Post Author</label>
         <input type="text" class="form-control" name="author"/>
+    </div> -->
+
+    <div class="form-group">
+        <label for="users">Users: </label>
+        <select name="post_user" id="post_user">
+            <?php
+                $users_query = "SELECT * FROM users";
+                $select_user = mysqli_query($connection, $users_query);
+                comfirmQuery($select_user);
+                while($row = mysqli_fetch_assoc($select_user))
+                {
+                    $user_id = $row['user_id'];
+                    $username = $row['username'];
+                    echo "<option value='{$username}'>{$username}</option>";
+                }
+            ?>
+        </select>
     </div>
+
+
     <div class="form-group">
         <select name="post_status" id="">
             <option value='draft'>Post Status</option>
