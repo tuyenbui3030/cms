@@ -62,6 +62,7 @@
     <!-- <script src="https://cloud.tinymce.com/stable/tinymce.min.js"></script> -->
     <!-- <script src="https://cdn.tiny.cloud/1/no-api-key/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script> -->
     <script src="https://cdn.ckeditor.com/ckeditor5/18.0.0/classic/ckeditor.js"></script>
+    <script src="js/jquery.js"></script>
 
 </head>
 
