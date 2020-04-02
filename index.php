@@ -21,11 +21,20 @@
             } else {
                 $page_1 = ($page * $per_page) - $per_page;
             }
-
-            $select_query_count = "SELECT * FROM posts";
+            if (isset($_SESSION['user_role']) && $_SESSION['user_role'] == 'admin') {
+                $select_query_count = "SELECT * FROM posts";
+            } else {
+                $select_query_count = "SELECT * FROM posts WHERE post_status = 'Public'";
+            }
+            //$select_query_count = "SELECT * FROM posts WHERE post_status = 'Public'";
             $find_count = mysqli_query($connection, $select_query_count);
             $count = mysqli_num_rows($find_count);
-
+            if($count < 1)
+            {
+                echo "<h1 class='text-center'>NO POSTS</h1>";
+            }
+            else
+            {
             $count = ceil($count / $per_page);
 
 
@@ -39,7 +48,6 @@
                 $post_image = $row['post_image'];
                 $post_content = substr($row['post_content'], 0, 200);
                 $post_status = $row['post_status'];
-                if ($post_status == 'Public') {
             ?>
                     <h1 class="page-header">
                         Page Heading
