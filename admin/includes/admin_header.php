@@ -3,20 +3,20 @@
 <?php ob_start();?>
 <?php session_start();?>
 <?php
-    if(!isset($_SESSION['user_role']))
-    {
-        header("Location: ../index.php");
-    }
-    else
-    {
-        if($_SESSION['user_role'] !== 'admin')
-        {
-            if($_SESSION['user_role'] !== 'Admin')
-            {
-                header("Location: ../index.php");
-            }
-        }
-    }
+    // if(!isset($_SESSION['user_role']))
+    // {
+    //     header("Location: ../index.php");
+    // }
+    // else
+    // {
+    //     if($_SESSION['user_role'] !== 'admin')
+    //     {
+    //         if($_SESSION['user_role'] !== 'Admin')
+    //         {
+    //             header("Location: ../index.php");
+    //         }
+    //     }
+    // }
     
     // if(isset($_SESSION['user_role']))
     // {
@@ -25,6 +25,14 @@
     //         header("Location: ../index.php");
     //     }
     // }
+    if(isset($_SESSION['user_role']))
+    {
+
+    }
+    else
+    {
+        header("Location: ../index.php");
+    }
 
 ?>
 <!DOCTYPE html>
