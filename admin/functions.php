@@ -36,11 +36,14 @@ function is_admin($username)
     $result = mysqli_query($connection, $query);
     comfirmQuery($result);
     $row = mysqli_fetch_array($result);
-    if ($row['user_role'] == 'admin') {
-        return true;
-    } else {
-        return false;
+    if (isset($row['user_role'])) {
+        if ($row['user_role'] == 'admin') {
+            return true;
+        } else {
+            return false;
+        }
     }
+    return false;
 }
 function redirect($location)
 {
@@ -167,13 +170,14 @@ function insert_categories()
         if ($cat_title == "" || empty($cat_title)) {
             echo "<h3>This fiels should not be empty</h3>";
         } else {
-            $query  = "INSERT INTO categories(cat_title)";
-            $query .= "VALUE('{$cat_title}')";
-            $create_categoty_query = mysqli_query($connection, $query);
-            if (!$create_categoty_query) {
+            $stmt = mysqli_prepare($connection, "INSERT INTO categories(cat_title) VALUES(?) ");
+            mysqli_stmt_bind_param($stmt, 's', $cat_title);
+            mysqli_stmt_execute($stmt);
+            if (!$stmt) {
                 die('QUERY FAILED' . mysqli_error($connection));
             }
         }
+        mysqli_stmt_close($stmt);
     }
 }
 
