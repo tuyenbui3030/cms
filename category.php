@@ -34,6 +34,9 @@
                 }
                 //$query = "SELECT * FROM posts WHERE post_category_id = $post_category_id AND post_status = 'Public'";
                 //$select_all_posts_query = mysqli_query($connection, $query);
+                mysqli_stmt_store_result($stmt);
+                $count =  mysqli_stmt_num_rows($stmt);
+                echo $count;
                 if (mysqli_stmt_num_rows($stmt) === 0) {
                     echo "<h1 class='text-center'>No categories available</h1>";
                 }
