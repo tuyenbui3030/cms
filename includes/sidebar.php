@@ -1,3 +1,14 @@
+<?php
+
+if (ifItIsMethod('post')) {
+
+    if (isset($_POST['username']) && isset($_POST['password'])) {
+        login_user($_POST['username'], $_POST['password']);
+    } else {
+        redirect('/cms/index.php');
+    }
+}
+?>
 <div class="col-md-4">
 
     <!-- Blog Search Well -->
@@ -25,7 +36,7 @@
             <a href="/cms/includes/logout.php" class="btn btn-danger">Logout</a>
         <?php else : ?>
             <h4>Login</h4>
-            <form action="includes/login.php" method="post">
+            <form method="post">
                 <div class="form-group">
                     <input name="username" type="text" class="form-control" placeholder="Enter Username" />
                 </div>
@@ -36,7 +47,11 @@
                         </button>
                     </span>
                 </div>
-            </form> <!-- search form -->
+                <div class="form-group">
+                    <a href="forgot.php?forgot=<?php echo uniqid(true); ?>">Forgot Password</a>
+                </div>
+            </form>
+            <!-- search form -->
             <!-- /.input-group -->
         <?php endif; ?>
 
