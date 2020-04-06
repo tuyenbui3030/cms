@@ -1,0 +1,7 @@
+.DS_Store
+
+/vendor/
+/build/
+
+# Put local modifications to the PHPUnit configuration in this file
+/phpunit.xml

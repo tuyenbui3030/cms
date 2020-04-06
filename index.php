@@ -55,7 +55,6 @@
                         <small>Secondary Text</small>
                     </h1>
                     <!-- First Blog Post -->
-                    <h1><?php echo $count; ?></h1>
                     <h2>
                         <a href="post/<?php echo $post_id; ?>"><?php echo $post_title ?></a>
                     </h2>
@@ -65,7 +64,7 @@
                     <p><span class="glyphicon glyphicon-time"></span><?php echo $post_date ?></p>
                     <hr>
                     <a href="post.php?p_id=<?php echo $post_id; ?>">
-                        <img class="img-responsive" src="images/<?php echo $post_image ?>" alt="">
+                        <img class="img-responsive" src="images/<?php echo imagePlaceholder($post_image); ?>" alt="">
                     </a>
                     <hr>
                     <p><?php echo $post_content ?></p>

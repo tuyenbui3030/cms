@@ -1,5 +1,13 @@
 
 <?php
+function imagePlaceholder($image = '')
+{
+    if (!$image) {
+        return 'js.png';
+    } else {
+        return $image;
+    }
+}
 // Hàm sử dụng trong index.php
 function recordCount($table)
 {
@@ -52,32 +60,29 @@ function redirect($location)
     exit();
 }
 
- function ifItIsMethod($method=null){
+function ifItIsMethod($method = null)
+{
 
-    if($_SERVER['REQUEST_METHOD'] == strtoupper($method)){
+    if ($_SERVER['REQUEST_METHOD'] == strtoupper($method)) {
 
         return true;
-
     }
 
     return false;
-
 }
 function isLoggedIn()
 {
-    if(isset($_SESSION['user_role']))
-    {
+    if (isset($_SESSION['user_role'])) {
         return true;
     }
     return false;
 }
- function checkIfUserIsLoggedInAndRedirect($redirectLocation=null)
- {
-     if(isLoggedIn())
-     {
-         redirect($redirectLocation);
-     }
- }
+function checkIfUserIsLoggedInAndRedirect($redirectLocation = null)
+{
+    if (isLoggedIn()) {
+        redirect($redirectLocation);
+    }
+}
 // Hàm xác định username đã tồn tại (dùng cho registration.php)
 function username_exists($username)
 {

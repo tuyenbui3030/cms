@@ -1,0 +1,36 @@
+{
+    "name": "openbuildings/postmark",
+    "description": "Swiftmailer Transport Class for Postmark",
+    "license": "BSD-3-Clause",
+    "authors": [
+        {
+            "name": "Ivan Kerin",
+            "email": "ivan@openbuildings.com",
+            "role": "Author"
+        }
+    ],
+    "require" : {
+        "php": ">=5.3.2",
+        "lib-curl": "*",
+        "swiftmailer/swiftmailer": "^5.0"
+    },
+    "require-dev" : {
+        "phpunit/phpunit": ">=4.0,<6.0"
+    },
+    "autoload": {
+        "psr-4": {"Openbuildings\\Postmark\\": "src/"}
+    },
+    "autoload-dev": {
+        "psr-4": {"Openbuildings\\Postmark\\Test\\": "tests/src/"}
+    },
+    "suggest": {
+        "openbuildings/swiftmailer-css-inliner": "Inline the CSS of your HTML emails",
+        "openbuildings/swiftmailer-filter": "Whitelist or blacklist domains or emails from To, Cc and Bcc",
+        "openbuildings/swiftmailer-google-campaign": "Append to all email links Google UTM campaign parameters"
+    },
+    "config": {
+        "platform": {
+            "php": "5.4"
+        }
+    }
+}

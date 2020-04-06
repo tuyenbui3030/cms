@@ -12,8 +12,11 @@
             <?php
             if (isset($_GET['category'])) {
                 $post_category_id = $_GET['category'];
-                
-                if (is_admin($_SESSION['username'])) {
+                $session_user = '';
+                if(!empty($_SESSION['username'])) {
+                    $session_user = $_SESSION['username'];
+                }
+                if (is_admin($session_user)) {
                     $stmt1 = mysqli_prepare($connection, "SELECT post_id, post_title, post_author, post_date, post_image, post_content FROM posts WHERE post_category_id = ?");
                     //$query = "SELECT * FROM posts WHERE post_category_id = $post_category_id";
                 } else {
@@ -36,7 +39,6 @@
                 //$select_all_posts_query = mysqli_query($connection, $query);
                 mysqli_stmt_store_result($stmt);
                 $count =  mysqli_stmt_num_rows($stmt);
-                echo $count;
                 if (mysqli_stmt_num_rows($stmt) === 0) {
                     echo "<h1 class='text-center'>No categories available</h1>";
                 }
