@@ -16,8 +16,7 @@
                             <small>Author</small>
                         </h1>
                         <?php
-                            if(isset($_GET['source']))
-                            {
+                            if(isset($_GET['source'])) {
                                 $source = $_GET['source'];
                             }
                             else

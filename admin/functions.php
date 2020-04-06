@@ -119,8 +119,8 @@ function register_user($username, $email, $password)
     $password   = mysqli_real_escape_string($connection, $password);
     $password   = password_hash($password, PASSWORD_BCRYPT, array('cost' => 12));
 
-    $query = "INSERT INTO users(user_firstname, user_lastname, user_role, username, user_email, user_password, user_images) 
-    VALUES ('','','subscriber','{$username}','{$email}','{$password}', '')";
+    $query = "INSERT INTO users(user_firstname, user_lastname, user_role, username, user_email, user_password, user_images, token) 
+    VALUES ('','','subscriber','{$username}','{$email}','{$password}', '','')";
     $register_user_query = mysqli_query($connection, $query);
     comfirmQuery($register_user_query);
 }
@@ -242,5 +242,8 @@ function deleteCategories()
         $delete_query = mysqli_query($connection, $query);
         header("Location: categories.php");
     }
+}
+function phpAlert($msg) {
+    echo '<script type="text/javascript">alert("' . $msg . '")</script>';
 }
 ?>

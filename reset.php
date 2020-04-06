@@ -20,8 +20,7 @@ if ($stmt = mysqli_prepare($connection, 'SELECT username, user_email, token FROM
 
     mysqli_stmt_close($stmt);
 
-
-    if ($_GET['token'] !== $token || $_GET['email'] !== $email) {
+    if ($_GET['token'] !== $token || $_GET['email'] !== $user_email) {
 
         redirect('index');
     } else {

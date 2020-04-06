@@ -1,15 +1,14 @@
 <?php
-
-if (ifItIsMethod('post')) {
-
-    if (isset($_POST['login'])) {
-        if (isset($_POST['username']) && isset($_POST['password'])) {
-            login_user($_POST['username'], $_POST['password']);
-        } else {
-            redirect('/cms/index.php');
-        }
-    }
-}
+// if (ifItIsMethod('post')) {
+//     if (isset($_POST['login'])) {
+//         if (isset($_POST['username']) && isset($_POST['password'])) {
+//             login_user($_POST['username'], $_POST['password']);
+//             $checkLogin = true;
+//         } else {
+//             redirect('/cms/index.php');
+//         }
+//     }
+// }
 ?>
 <div class="col-md-4">
 
@@ -38,6 +37,17 @@ if (ifItIsMethod('post')) {
             <a href="/cms/includes/logout.php" class="btn btn-danger">Logout</a>
         <?php else : ?>
             <h4>Login</h4>
+            <?php
+            if (ifItIsMethod('post')) {
+                if (isset($_POST['login'])) {
+                    if (isset($_POST['username']) && isset($_POST['password'])) {
+                        if (!login_user($_POST['username'], $_POST['password'])) {
+                            echo "<h5 class='text-danger'>Password or Username is wrong<h5>";
+                        }
+                    }
+                }
+            }
+            ?>
             <form method="post">
                 <div class="form-group">
                     <input name="username" type="text" class="form-control" placeholder="Enter Username" />
@@ -45,8 +55,7 @@ if (ifItIsMethod('post')) {
                 <div class="input-group">
                     <input name="password" type="password" class="form-control" placeholder="Enter Password" />
                     <span class="input-group-btn">
-                        <button class="btn btn-primary" name="login" type="submit">submit
-                        </button>
+                        <button class="btn btn-primary" name="login" type="submit">Login</button>
                     </span>
                 </div>
                 <div class="form-group">
@@ -75,7 +84,7 @@ if (ifItIsMethod('post')) {
                     while ($row = mysqli_fetch_assoc($select_categories_sidebar)) {
                         $cat_title = $row['cat_title'];
                         $cat_id = $row['cat_id'];
-                        echo "<li><a href='/cms/category/$cat_id'>{$cat_title}</a></li>";
+                        echo "<li><a href='/cms/category.php?category=$cat_id'>{$cat_title}</a></li>";
                     }
                     ?>
                 </ul>
